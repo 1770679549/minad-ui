@@ -1,0 +1,43 @@
+// ma-ui 统一样式变量集合
+// 位置：src/uni_modules/ma-ui/styles/_variables.scss
+// 说明：
+// - 该文件存放所有组件公用的 SASS 变量（颜色、间距、字号、圆角等）。
+// - 新增组件时请在组件的 index.scss 中通过 `@use '../../styles/variables' as *;` 引入，
+//   并使用 $ma-xxx-... 命名空间风格（前缀为 ma- 或 ma-<component>-）以避免命名冲突。
+// - 为便于主题化，尽量将通用颜色/尺寸放在此处；组件私有变量可以 `ma-<component>-` 前缀命名并在组件目录中覆盖。
+
+// 颜色色板
+$ma-primary: #007aff;
+$ma-success: #4cd964;
+$ma-warning: #f0ad4e;
+$ma-error: #dd524d;
+$ma-info: #909399;
+
+// 文本与背景
+$ma-text-color: #333;
+$ma-text-color-muted: #888;
+$ma-bg: #ffffff;
+$ma-bg-muted: #f8f8f8;
+
+// 边框与圆角
+$ma-border: #e6e6e6;
+$ma-border-strong: #c8c7cc;
+$ma-border-radius-sm: 4px;
+$ma-border-radius-md: 8px;
+$ma-border-radius-lg: 12px;
+
+// 字体尺寸
+$ma-font-size-sm: 12px;
+$ma-font-size-base: 14px;
+$ma-font-size-lg: 16px;
+
+// 组件级别的命名示例（可覆盖）
+// ma-foo 组件的默认变量（放在此处以便统一管理）
+$ma-foo-bg: $ma-bg;
+$ma-foo-border: $ma-border;
+$ma-foo-title: $ma-text-color;
+$ma-foo-subtitle: $ma-text-color-muted;
+$ma-foo-padding: 12px;
+
+// 约定：组件中引用变量时尽量使用带前缀的变量（例如 $ma-foo-bg）
+// 如果需要全局替换主题色，请修改上方的 $ma-primary / $ma-bg 等基础变量。

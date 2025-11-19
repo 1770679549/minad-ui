@@ -1,11 +1,20 @@
+<!--
+ * @Author: 李红林 1770679549@qq.com
+ * @Date: 2025-11-19 22:06:05
+ * @LastEditors: 李红林 1770679549@qq.com
+ * @LastEditTime: 2025-11-19 22:29:56
+ * @FilePath: \minad-ui\src\App.vue
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+-->
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />

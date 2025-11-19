@@ -1,0 +1,35 @@
+// ma-ui 全局样式
+
+// 引入所有组件的样式
+// @use './components/ma-button/index.scss';
+// @use './components/ma-icon/index.scss';
+
+// 全局样式变量
+:root {
+  --ma-primary-color: #007aff;
+  --ma-success-color: #4cd964;
+  --ma-warning-color: #f0ad4e;
+  --ma-error-color: #dd524d;
+  --ma-info-color: #909399;
+
+  --ma-text-color: #333;
+  --ma-text-color-inverse: #fff;
+  --ma-text-color-grey: #999;
+  --ma-text-color-placeholder: #808080;
+  --ma-text-color-disable: #c0c0c0;
+
+  --ma-bg-color: #fff;
+  --ma-bg-color-grey: #f8f8f8;
+  --ma-bg-color-hover: #f1f1f1;
+
+  --ma-border-color: #c8c7cc;
+
+  --ma-font-size-sm: 12px;
+  --ma-font-size-base: 14px;
+  --ma-font-size-lg: 16px;
+
+  --ma-border-radius-sm: 2px;
+  --ma-border-radius-base: 3px;
+  --ma-border-radius-lg: 6px;
+  --ma-border-radius-circle: 50%;
+}

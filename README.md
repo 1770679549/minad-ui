@@ -1,48 +1,57 @@
-# minad-ui
+<!--
+ * @Author: 李红林 1770679549@qq.com
+ * @Date: 2025-11-19 22:06:05
+ * @LastEditors: 李红林 1770679549@qq.com
+ * @LastEditTime: 2025-11-19 22:38:46
+ * @FilePath: \minad-ui\README.md
+ * @Description:
+ *
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved.
+-->
 
-This template should help get you started developing with Vue 3 in Vite.
+# MinAd UI
 
-## Recommended IDE Setup
+一个轻量级的 Vue 3 移动端 UI 组件库。
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 安装
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install minad-ui
 ```
 
-### Compile and Hot-Reload for Development
+## 使用
 
-```sh
-npm run dev
+### 全局安装
+
+```javascript
+import { createApp } from 'vue'
+import App from './App.vue'
+import install from 'minad-ui'
+import 'minad-ui/style.css'
+
+const app = createApp(App)
+app.use(install)
+app.mount('#app')
 ```
 
-### Type-Check, Compile and Minify for Production
+### 局部安装
 
-```sh
-npm run build
-```
+<template>
+  <ma-row :gutter="16">
+    <ma-col :span="6">列1</ma-col>
+    <ma-col :span="6">列2</ma-col>
+  </ma-row>
+</template>
 
-### Lint with [ESLint](https://eslint.org/)
+<script setup>
+import { MaRow, MaCol } from 'minad-ui'
+import 'minad-ui/style.css'
+</script>
 
-```sh
-npm run lint
-```
+组件
+目前包含以下组件：
+
+ma-row: 布局行组件
+ma-col: 布局列组件
+License
+MIT
