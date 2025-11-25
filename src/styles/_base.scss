@@ -1,0 +1,14 @@
+// 所有组件的基础样式
+@use './variables' as *;
+
+// 直接使用 SCSS 变量，不生成 CSS 变量
+
+/* Common utility classes */
+.md-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.md-readonly {
+  background-color: $md-color-bg-disabled;
+}

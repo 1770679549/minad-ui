@@ -1,0 +1,50 @@
+<!--
+ * @Author: {{author}}
+ * @Date: {{date}}
+ * @Description: {{description}}
+ *
+--> 
+<template>
+  <view :class="['md-{{kebabCase name}}', { [size]: size }]">
+    <slot></slot>
+  </view>
+</template>
+
+<script lang="ts" setup>
+import { defineProps, defineEmits } from 'vue'
+
+// Props definition
+const props = defineProps<{
+  // Component size
+  size?: 'large' | 'medium' | 'small'
+}>()
+
+// Emits definition
+const emit = defineEmits<{
+  // Add your events here
+  [key: string]: any
+}>()
+</script>
+
+<style scoped>
+/* {{pascalCase name}} component specific styles */
+.md-{{kebabCase name}} {
+  /* Base styles are imported from global styles */
+}
+
+/* Size variations */
+.md-{{kebabCase name}}.large {
+  font-size: var(--md-size-large);
+  padding: var(--md-spacing-md) var(--md-spacing-xl);
+}
+
+.md-{{kebabCase name}}.medium {
+  font-size: var(--md-size-medium);
+  padding: var(--md-spacing-sm) var(--md-spacing-lg);
+}
+
+.md-{{kebabCase name}}.small {
+  font-size: var(--md-size-small);
+  padding: var(--md-spacing-xs) var(--md-spacing-md);
+}
+</style>
