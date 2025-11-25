@@ -102,27 +102,29 @@
 </template>
 ```
 
-### 属性
+## API
 
-| 属性名 | 类型 | 默认值 | 说明 |
-|-------|------|--------|------|
-| span | number | - | 列的宽度（0-24） |
-| offset | number | 0 | 列的偏移量（0-24） |
-| order | number | 0 | 列的排序 |
-| xs | number/object | - | 超小屏幕（<576px）的列宽或配置对象 |
-| sm | number/object | - | 小屏幕（≥576px）的列宽或配置对象 |
-| md | number/object | - | 中等屏幕（≥768px）的列宽或配置对象 |
-| lg | number/object | - | 大屏幕（≥992px）的列宽或配置对象 |
+### Props
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| span | 列的宽度 | `number` | 0-24 | - |
+| offset | 列的偏移量 | `number` | 0-24 | 0 |
+| order | 列的排序 | `number` | - | 0 |
+| xs | 超小屏幕（<576px）的列宽或配置对象 | `number/object` | - | - |
+| sm | 小屏幕（≥576px）的列宽或配置对象 | `number/object` | - | - |
+| md | 中等屏幕（≥768px）的列宽或配置对象 | `number/object` | - | - |
+| lg | 大屏幕（≥992px）的列宽或配置对象 | `number/object` | - | - |
 
 ### 响应式配置对象
 
 当 xs、sm、md、lg 属性为对象时，可以包含以下属性：
 
-| 属性名 | 类型 | 说明 |
-|-------|------|------|
-| span | number | 列的宽度（0-24） |
-| offset | number | 列的偏移量（0-24） |
-| order | number | 列的排序 |
+| 参数 | 说明 | 类型 | 可选值 |
+| --- | --- | --- | --- |
+| span | 列的宽度 | `number` | 0-24 |
+| offset | 列的偏移量 | `number` | 0-24 |
+| order | 列的排序 | `number` | - |
 
 ### 示例
 
@@ -139,8 +141,17 @@
 </template>
 ```
 
-### 插槽
+### Slots
 
 | 插槽名 | 说明 |
-|-------|------|
+| --- | --- |
 | default | 列内容 |
+
+## 样式变量
+
+| 变量名 | 默认值 | 说明 |
+| --- | --- | --- |
+| $md-grid-columns | `24` | 栅格总列数 |
+| $md-grid-gutter | `0` | 栅格间距 |
+| $md-flex-grow | `1` | 弹性增长因子 |
+| $md-flex-shrink | `1` | 弹性收缩因子 |

@@ -121,17 +121,27 @@
 </template>
 ```
 
-### 属性
+## API
 
-| 属性名 | 类型 | 默认值 | 说明 |
-|-------|------|--------|------|
-| gutter | number | 0 | 列间距（单位：px） |
-| type | string | - | 布局模式，可选值：flex |
-| justify | string | start | flex 布局下的水平排列方式，可选值：start, end, center, space-around, space-between |
-| align | string | top | flex 布局下的垂直排列方式，可选值：top, middle, bottom |
+### Props
 
-### 插槽
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| gutter | 列间距（单位：px） | `number` | - | `0` |
+| type | 布局模式 | `string` | `flex` | - |
+| justify | flex 布局下的水平排列方式 | `string` | `start`/`end`/`center`/`space-around`/`space-between` | `'start'` |
+| align | flex 布局下的垂直排列方式 | `string` | `top`/`middle`/`bottom` | `'top'` |
+
+### Slots
 
 | 插槽名 | 说明 |
-|-------|------|
-| default | 容器内容，通常包含多个 `md-col` 组件 |
+| --- | --- |
+| default | 行内容 |
+
+## 样式变量
+
+| 变量名 | 默认值 | 说明 |
+| --- | --- | --- |
+| $md-gutter | `0` | 栅格间距 |
+| $md-flex-grow | `1` | 弹性增长因子 |
+| $md-flex-shrink | `1` | 弹性收缩因子 |

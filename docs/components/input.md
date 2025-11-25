@@ -99,37 +99,48 @@ const number = ref('')
 </script>
 ```
 
-### 属性
+## API
 
-| 属性名 | 类型 | 默认值 | 说明 |
-|-------|------|--------|------|
-| v-model | string/number | - | 输入框的值 |
-| type | string | text | 输入框类型，可选值：text, password, number, email, tel |
-| placeholder | string | - | 占位符 |
-| disabled | boolean | false | 是否禁用 |
-| readonly | boolean | false | 是否只读 |
-| size | string | medium | 尺寸，可选值：large, medium, small |
-| maxlength | number | - | 最大输入长度 |
-| minlength | number | - | 最小输入长度 |
-| step | number | - | 步长（仅在number类型时生效） |
-| min | number | - | 最小值（仅在number类型时生效） |
-| max | number | - | 最大值（仅在number类型时生效） |
+### Props
 
-### 事件
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| --- | --- | --- | --- | --- |
+| v-model | 输入框的值 | `string \| number` | - | - |
+| type | 输入框类型 | `string` | `text`/`password`/`number`/`email`/`tel` | `'text'` |
+| placeholder | 占位符 | `string` | - | - |
+| disabled | 是否禁用 | `boolean` | - | `false` |
+| readonly | 是否只读 | `boolean` | - | `false` |
+| size | 尺寸 | `string` | `large`/`medium`/`small` | `'medium'` |
+| maxlength | 最大输入长度 | `number` | - | - |
+| minlength | 最小输入长度 | `number` | - | - |
+| step | 步长（仅在number类型时生效） | `number` | - | - |
+| min | 最小值（仅在number类型时生效） | `number` | - | - |
+| max | 最大值（仅在number类型时生效） | `number` | - | - |
+
+### Events
 
 | 事件名 | 说明 | 参数 |
-|-------|------|------|
-| input | 输入时触发 | event: Event |
-| focus | 聚焦时触发 | event: FocusEvent |
-| blur | 失焦时触发 | event: FocusEvent |
-| change | 内容改变时触发 | event: Event |
-| keydown | 键盘按下时触发 | event: KeyboardEvent |
-| keyup | 键盘释放时触发 | event: KeyboardEvent |
+| --- | --- | --- |
+| input | 输入时触发 | `event: Event` |
+| focus | 聚焦时触发 | `event: FocusEvent` |
+| blur | 失焦时触发 | `event: FocusEvent` |
+| change | 内容改变时触发 | `event: Event` |
+| keydown | 键盘按下时触发 | `event: KeyboardEvent` |
+| keyup | 键盘释放时触发 | `event: KeyboardEvent` |
 
-### 方法
+### Methods
 
 | 方法名 | 说明 |
-|-------|------|
+| --- | --- |
 | focus | 使输入框获得焦点 |
 | blur | 使输入框失去焦点 |
 | select | 选中输入框内容 |
+
+## 样式变量
+
+| 变量名 | 默认值 | 说明 |
+| --- | --- | --- |
+| $md-color-primary | `#007aff` | 主要颜色 |
+| $md-color-info | `#909399` | 信息颜色 |
+| $md-border-radius | `4px` | 边框圆角 |
+| $md-transition | `all 0.3s ease` | 过渡动画 |
