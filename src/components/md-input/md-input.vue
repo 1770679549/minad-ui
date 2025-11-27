@@ -2,7 +2,7 @@
  * @Author: 李红林 1770679549@qq.com
  * @Date: 2025-11-25 10:00:00
  * @LastEditors: 李红林 1770679549@qq.com
- * @LastEditTime: 2025-11-25 16:50:32
+ * @LastEditTime: 2025-11-27 10:30:11
  * @FilePath: \minad-ui\src\components\md-input\md-input.vue
  * @Description: Input 组件实现
  *
@@ -20,7 +20,7 @@
       :type="type"
       :class="['md-input']"
       :value="modelValue"
-      :placeholder="placeholder || ''"
+      :placeholder="computedPlaceholder"
       :disabled="disabled"
       :readonly="readonly"
       :maxlength="maxlength?.toString()"
@@ -44,51 +44,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits, watch } from 'vue'
+import { ref, defineProps, defineEmits, watch, inject, computed } from 'vue'
+import { useI18n } from '../../i18n/i18n'
+import type { InputProps, InputEmits } from './type'
 
 // Props 定义
-const props = defineProps<{
-  // 输入值
-  modelValue: string | number
-  // 输入框类型
-  type?: 'text' | 'password' | 'number' | 'email' | 'tel' | 'url'
-  // 尺寸
-  size?: 'large' | 'medium' | 'small'
-  // 占位符
-  placeholder?: string
-  // 是否禁用
-  disabled?: boolean
-  // 是否只读
-  readonly?: boolean
-  // 最大长度
-  maxlength?: number
-  // 最小长度
-  minlength?: number
-  // 数字输入的最小值
-  min?: number
-  // 数字输入的最大值
-  max?: number
-  // 数字输入的步长
-  step?: number
-}>()
+const props = defineProps<InputProps>()
+
+// Use i18n
+const { t } = useI18n()
+
+// Computed placeholder with i18n support
+const computedPlaceholder = computed(() => {
+  return props.placeholder || t('input.placeholder')
+})
 
 // Emits 定义
-const emit = defineEmits<{
-  // v-model 双向绑定事件
-  'update:modelValue': [value: string | number]
-  // 输入事件
-  input: [value: string | number]
-  // 聚焦事件
-  focus: [event: FocusEvent]
-  // 失焦事件
-  blur: [event: FocusEvent]
-  // 值改变事件
-  change: [value: string | number]
-  // 键盘按下事件
-  keydown: [event: KeyboardEvent]
-  // 键盘释放事件
-  keyup: [event: KeyboardEvent]
-}>()
+const emit = defineEmits<InputEmits>()
 
 // 输入框引用
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -119,6 +91,12 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   if (props.disabled) return
   emit('blur', event)
+
+  // 触发表单验证
+  const mdFormItem = inject<any>('mdFormItem')
+  if (mdFormItem?.handleBlur) {
+    mdFormItem.handleBlur()
+  }
 }
 
 // 处理值改变事件
@@ -131,6 +109,12 @@ const handleChange = (event: Event) => {
   }
 
   emit('change', value)
+
+  // 触发表单验证
+  const mdFormItem = inject<any>('mdFormItem')
+  if (mdFormItem?.handleChange) {
+    mdFormItem.handleChange()
+  }
 }
 
 // 处理键盘按下事件

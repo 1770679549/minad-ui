@@ -8,22 +8,16 @@
  * 
 -->
 <template>
-  <view :class="['md-row', { 'md-row--gutter': gutter, [align]: true, [justify]: true }]">
+  <view :class="['md-row', { 'md-row--gutter': gutter }, align ? { [align]: true } : {}, justify ? { [justify]: true } : {}]">
     <slot></slot>
   </view>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import type { RowProps } from './type'
 
-const props = defineProps<{
-  /** 列之间的间距 */
-  gutter?: number
-  /** 垂直对齐方式 */
-  align?: 'top' | 'middle' | 'bottom'
-  /** 水平排列方式 */
-  justify?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
-}>()
+const props = defineProps<RowProps>()
 </script>
 
 <style scoped>

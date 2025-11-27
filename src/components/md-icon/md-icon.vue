@@ -40,37 +40,9 @@
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue'
 import { addUnit } from '../../utils'
+import type { IconProps } from './type'
 
-const props = defineProps<{
-  /**
-   * 图标名称 (自动添加 md-icon- 前缀)
-   */
-  name?: string
-  /**
-   * 图标大小
-   */
-  size?: number | string
-  /**
-   * 图标颜色
-   */
-  color?: string
-  /**
-   * 旋转角度
-   */
-  rotate?: number
-  /**
-   * 是否旋转动画
-   */
-  spin?: boolean
-  /**
-   * 是否为加载状态
-   */
-  loading?: boolean
-  /**
-   * 自定义样式
-   */
-  customStyle?: Record<string, any>
-}>()
+const props = defineProps<IconProps>()
 
 // 判断是否是文本图标
 const isTextIcon = computed(() => {

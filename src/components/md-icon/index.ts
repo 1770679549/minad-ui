@@ -9,6 +9,8 @@
  */
 
 import MdIcon from './md-icon.vue'
+import type { IconProps } from './type'
 
 export { MdIcon }
+export type { IconProps }
 export default MdIcon

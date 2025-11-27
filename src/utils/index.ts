@@ -9,6 +9,10 @@
  */
 import { isArray, isObject, isString } from '@vue/shared';
 
+// 使用官方压缩版dayjs，功能完整且体积仅7kb
+// @ts-ignore - dayjs.min.js是CommonJS模块，没有类型声明
+export const dayjs = require('./dayjs.min.js');
+
 export const isUndefined = (val: any): val is undefined => val === undefined
 export const isBoolean = (val: any): val is boolean => typeof val === 'boolean'
 export const isNumber = (val: any): val is number => typeof val === 'number'

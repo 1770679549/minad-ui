@@ -25,19 +25,11 @@
 
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
+import type { LinkProps, LinkEmits } from './type'
 
-const props = defineProps<{
-  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info'
-  size?: 'large' | 'medium' | 'small'
-  href?: string
-  disabled?: boolean
-  underline?: boolean
-  external?: boolean
-}>()
+const props = defineProps<LinkProps>()
 
-const emit = defineEmits<{
-  click: [event: MouseEvent]
-}>()
+const emit = defineEmits<LinkEmits>()
 
 const handleClick = (event: MouseEvent) => {
   if (props.disabled) {

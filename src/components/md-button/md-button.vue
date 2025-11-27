@@ -2,7 +2,7 @@
  * @Author: 李红林 1770679549@qq.com
  * @Date: 2025-11-24 18:04:22
  * @LastEditors: 李红林 1770679549@qq.com
- * @LastEditTime: 2025-11-25 16:50:24
+ * @LastEditTime: 2025-11-27 14:28:25
  * @FilePath: \minad-ui\src\components\md-button\md-button.vue
  * @Description:
  *
@@ -19,17 +19,15 @@
 
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
+import { useI18n } from '../../i18n/i18n'
+import type { ButtonProps, ButtonEmits } from './type'
 
-const props = defineProps<{
-  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info'
-  size?: 'large' | 'medium' | 'small'
-  disabled?: boolean
-  loading?: boolean
-}>()
+const props = defineProps<ButtonProps>()
 
-const emit = defineEmits<{
-  click: [event: MouseEvent]
-}>()
+const emit = defineEmits<ButtonEmits>()
+
+// Use i18n
+const { t } = useI18n()
 
 const handleClick = (event: MouseEvent) => {
   if (!props.disabled && !props.loading) {

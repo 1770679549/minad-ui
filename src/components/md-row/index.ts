@@ -8,5 +8,7 @@
  * 
  */
 import MdRow from './md-row.vue'
+import type { RowProps } from './type'
 
 export { MdRow }
+export type { RowProps }

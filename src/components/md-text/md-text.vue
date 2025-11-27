@@ -33,17 +33,9 @@
 
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import type { TextProps } from './type'
 
-const props = defineProps<{
-  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'secondary'
-  size?: 'large' | 'medium' | 'small'
-  bold?: boolean
-  italic?: boolean
-  underline?: boolean
-  align?: 'left' | 'center' | 'right'
-  lineHeight?: string | number
-  letterSpacing?: string | number
-}>()
+const props = defineProps<TextProps>()
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +43,7 @@ const props = defineProps<{
 // 文本基础样式
 .md-text {
   font-size: $md-size-medium;
-  color: $md-color-text-primary;
+  color: $md-color-text;
   line-height: 1.5;
 
   // 类型变体
@@ -60,7 +52,7 @@ const props = defineProps<{
   &.warning { color: $md-color-warning; }
   &.danger { color: $md-color-danger; }
   &.info { color: $md-color-info; }
-  &.secondary { color: $md-color-text-secondary; }
+  &.secondary { color: $md-color-text-grey; }
 
   // 尺寸变体
   &.large { font-size: $md-size-large; }

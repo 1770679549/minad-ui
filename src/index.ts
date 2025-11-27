@@ -8,7 +8,7 @@
  *
  * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved.
  */
-import { App } from 'vue'
+import type { App } from 'vue'
 
 // 直接导入组件
 import MdRow from './components/md-row/md-row.vue'
