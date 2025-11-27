@@ -1,22 +1,62 @@
-# ConfigProvider Global Configuration
+# ConfigProvider
 
-ConfigProvider is a global configuration component that provides global configuration options for MinAd UI.
+Global configuration component for setting language, theme, and size.
+
+## Introduction
+
+ConfigProvider is a global configuration component used to uniformly manage the language, theme, and size of components. It uses Vue's Provide/Inject mechanism to pass configurations to all child components.
 
 ## Basic Usage
 
+### Setting Language
+
 ```vue
 <template>
-  <md-config-provider :locale="locale" size="small">
-    <md-input />
-    <md-button type="primary">Button</md-button>
+  <md-config-provider :locale="locale">
+    <!-- Child components will automatically use the set language -->
+    <md-button>{{ $t('button.confirm') }}</md-button>
   </md-config-provider>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
-import { MdConfigProvider, MdInput, MdButton } from 'minad-ui'
 
-const locale = ref('en')
+const locale = ref('en') // Supports 'zh-cn' and 'en'
+</script>
+```
+
+### Setting Theme
+
+```vue
+<template>
+  <md-config-provider :theme="theme">
+    <md-card>
+      <md-button type="primary">Primary Button</md-button>
+    </md-card>
+  </md-config-provider>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const theme = ref('dark') // Supports 'light' and 'dark'
+</script>
+```
+
+### Setting Component Size
+
+```vue
+<template>
+  <md-config-provider :size="size">
+    <md-button>Button</md-button>
+    <md-input placeholder="Input"></md-input>
+  </md-config-provider>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const size = ref('large') // Supports 'small', 'medium', 'large'
 </script>
 ```
 
@@ -25,117 +65,153 @@ const locale = ref('en')
 ### Props
 
 | Parameter | Description | Type | Default |
-|-----------|-------------|------|---------|
-| locale | Global language setting | string | 'zh-cn' |
-| size | Global component size | 'small' \| 'medium' \| 'large' | 'medium' |
-| theme | Global theme setting | Record<string, any> | {} |
+| --- | --- | --- | --- |
+| locale | Language setting | `'zh-cn' \| 'en'` | `'zh-cn'` |
+| theme | Theme setting | `'light' \| 'dark'` | `'light'` |
+| size | Component size | `'small' \| 'medium' \| 'large'` | `'medium'` |
 
-### Events
+### Methods
 
-| Event Name | Description | Parameters |
-|------------|-------------|------------|
-| update:locale | Triggered when language changes | newLocale: string |
-| update:size | Triggered when size changes | newSize: string |
-| update:theme | Triggered when theme changes | newTheme: Record<string, any> |
+ConfigProvider component does not directly expose methods, but provides configurations through the Provide/Inject mechanism.
 
-## Configuration Items
+## Internationalization
 
-### locale
+### Supported Languages
 
-Configure the global language, supported values:
-- 'zh-cn' - Chinese
-- 'en' - English
+- Chinese (zh-cn)
+- English (en)
 
-### size
-
-Configure the global component size, supported values:
-- 'small' - Small size
-- 'medium' - Medium size
-- 'large' - Large size
-
-### theme
-
-Configure the global theme, you can customize the color, font and other styles of components:
+### Custom Translation
 
 ```vue
 <template>
-  <md-config-provider :theme="theme">
-    <md-button type="primary">Custom Theme Button</md-button>
+  <md-config-provider :locale="locale">
+    <md-button>{{ $t('custom.button') }}</md-button>
   </md-config-provider>
 </template>
 
-<script setup lang="ts">
-import { MdConfigProvider, MdButton } from 'minad-ui'
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useI18n } from '@/i18n/i18n'
 
-const theme = {
-  primaryColor: '#409eff',
-  successColor: '#67c23a',
-  warningColor: '#e6a23c',
-  dangerColor: '#f56c6c',
-  infoColor: '#909399'
-}
+const locale = ref('en')
+const { mergeLocaleMessage } = useI18n()
+
+onMounted(() => {
+  // Add custom translation
+  mergeLocaleMessage('en', {
+    custom: {
+      button: 'Custom Button'
+    }
+  })
+})
 </script>
 ```
 
-## Nested Usage
+## Theme
 
-ConfigProvider supports nested usage, inner configuration will override outer configuration:
+### Custom Theme Variables
+
+ConfigProvider component supports custom themes through CSS variables.
+
+```scss
+:root {
+  /* Primary color */
+  --md-primary-color: #1890ff;
+  --md-primary-hover-color: #40a9ff;
+  
+  /* Text color */
+  --md-text-color: #333333;
+  --md-text-color-secondary: #666666;
+  
+  /* Background color */
+  --md-background-color: #ffffff;
+  --md-background-color-light: #f5f5f5;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --md-primary-color: #40a9ff;
+  --md-text-color: #ffffff;
+  --md-text-color-secondary: #cccccc;
+  --md-background-color: #1f1f1f;
+  --md-background-color-light: #2f2f2f;
+}
+```
+
+## Usage Notes
+
+1. ConfigProvider should be wrapped around the outermost layer of the application so that all components can receive the configuration.
+2. ConfigProvider can be nested, and inner configurations will override outer configurations.
+3. Language settings will affect all components that support internationalization, including form validation prompts, button text, etc.
+4. Theme settings will affect the color, background, and other styles of components.
+5. Size settings will affect all components that support size adjustment.
+
+## Example Code
+
+### Complete Application Configuration
 
 ```vue
 <template>
-  <md-config-provider locale="zh-cn">
+  <md-config-provider
+    :locale="appConfig.locale"
+    :theme="appConfig.theme"
+    :size="appConfig.size"
+  >
+    <app-header />
+    <main>
+      <router-view />
+    </main>
+    <app-footer />
+  </md-config-provider>
+</template>
+
+<script setup>
+import { reactive } from 'vue'
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
+
+const appConfig = reactive({
+  locale: 'en',
+  theme: 'light',
+  size: 'medium'
+})
+</script>
+```
+
+### Dynamically Switching Language
+
+```vue
+<template>
+  <md-config-provider :locale="currentLocale">
     <div>
-      <md-button type="primary">中文按钮</md-button>
-      <md-config-provider locale="en">
-        <md-button type="primary">English Button</md-button>
-      </md-config-provider>
+      <md-button @click="switchLanguage('zh-cn')">中文</md-button>
+      <md-button @click="switchLanguage('en')">English</md-button>
+      
+      <md-form>
+        <md-form-item label="username">
+          <md-input v-model="username" :placeholder="$t('input.placeholder')"></md-input>
+        </md-form-item>
+        <md-form-item label="password">
+          <md-input v-model="password" type="password" :placeholder="$t('input.password')"></md-input>
+        </md-form-item>
+        <md-form-item>
+          <md-button type="primary" block>{{ $t('button.login') }}</md-button>
+        </md-form-item>
+      </md-form>
     </div>
   </md-config-provider>
 </template>
 
-<script setup lang="ts">
-import { MdConfigProvider, MdButton } from 'minad-ui'
-</script>
-```
-
-## Use with Internationalization
-
-ConfigProvider is closely integrated with internationalization functionality, making it easy to implement global language switching:
-
-```vue
-<template>
-  <div>
-    <md-button @click="switchLocale('zh-cn')">中文</md-button>
-    <md-button @click="switchLocale('en')">English</md-button>
-    
-    <md-config-provider :locale="currentLocale">
-      <md-form>
-        <md-form-item label="Username">
-          <md-input v-model="username" placeholder="Please enter username" />
-        </md-form-item>
-        <md-form-item label="Password">
-          <md-input v-model="password" type="password" placeholder="Please enter password" />
-        </md-form-item>
-        <md-button type="primary" @click="submit">Submit</md-button>
-      </md-form>
-    </md-config-provider>
-  </div>
-</template>
-
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
-import { MdConfigProvider, MdForm, MdFormItem, MdInput, MdButton } from 'minad-ui'
 
-const currentLocale = ref('zh-cn')
+const currentLocale = ref('en')
 const username = ref('')
 const password = ref('')
 
-const switchLocale = (locale: string) => {
-  currentLocale.value = locale
-}
-
-const submit = () => {
-  console.log('Submit', { username: username.value, password: password.value })
+const switchLanguage = (lang) => {
+  currentLocale.value = lang
 }
 </script>
 ```

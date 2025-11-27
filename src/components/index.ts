@@ -34,9 +34,23 @@ import { MdTabsItem } from './md-tabs-item'
 import { MdCard } from './md-card'
 import { MdCell } from './md-cell'
 import { MdPicker } from './md-picker'
+import { MdPickerDate } from './md-picker-date'
+import { MdDialog } from './md-dialog'
+import { MdNoticeBar } from './md-notice-bar'
+import { MdPopup } from './md-popup'
+import { MdTable, MdTableColumn } from './md-table'
+import { MdCollapse } from './md-collapse'
+import { MdCollapseItem } from './md-collapse-item'
+import { MdRate } from './md-rate'
+import { MdBadge } from './md-badge'
+import { MdSkeleton } from './md-skeleton'
+import { MdSwiper } from './md-swiper'
+import { MdSwiperItem } from './md-swiper-item'
+import { MdCheckbox, MdCheckboxGroup } from './md-checkbox'
+import { MdRadio, MdRadioGroup } from './md-radio'
 
 // Export individual components
-export { MdButton, MdInput, MdRow, MdCol, MdLink, MdNavbar, MdTabbar, MdTabbarItem, MdTabs, MdTabsItem, MdText, MdIcon, MdForm, MdFormItem, MdConfigProvider, MdDivider, MdImage, MdImagePreview, MdTag, MdVerifySlider, MdWatermark, MdEmpty, MdSwitch, MdUpload, MdCard, MdCell, MdPicker}
+export { MdButton, MdInput, MdRow, MdCol, MdLink, MdNavbar, MdTabbar, MdTabbarItem, MdTabs, MdTabsItem, MdText, MdIcon, MdForm, MdFormItem, MdConfigProvider, MdDivider, MdImage, MdImagePreview, MdTag, MdVerifySlider, MdWatermark, MdEmpty, MdSwitch, MdUpload, MdCard, MdCell, MdPicker, MdPickerDate, MdDialog, MdNoticeBar, MdPopup, MdTable, MdTableColumn, MdCollapse, MdCollapseItem, MdRate, MdBadge, MdSkeleton, MdSwiper, MdSwiperItem, MdCheckbox, MdCheckboxGroup, MdRadio, MdRadioGroup}
 
 // Export all components as an object
 export const components = {
@@ -66,7 +80,24 @@ export const components = {
   MdTabsItem,
   MdCard,
   MdCell,
-  MdPicker
+  MdPicker,
+  MdPickerDate,
+  MdDialog,
+  MdNoticeBar,
+  MdPopup,
+  MdTable,
+  MdTableColumn,
+  MdCollapse,
+  MdCollapseItem,
+  MdRate,
+  MdBadge,
+  MdSkeleton,
+  MdSwiper,
+  MdSwiperItem,
+  MdCheckbox,
+  MdCheckboxGroup,
+  MdRadio,
+  MdRadioGroup
 }
 
 export default components

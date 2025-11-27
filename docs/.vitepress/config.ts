@@ -2,7 +2,7 @@
  * @Author: 李红林 1770679549@qq.com
  * @Date: 2025-11-25 15:55:18
  * @LastEditors: 李红林 1770679549@qq.com
- * @LastEditTime: 2025-11-25 18:03:08
+ * @LastEditTime: 2025-11-27 18:04:01
  * @FilePath: \minad-ui\docs\.vitepress\config.ts
  * @Description:
  *

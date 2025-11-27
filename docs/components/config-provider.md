@@ -1,22 +1,62 @@
 # ConfigProvider 全局配置
 
-ConfigProvider 是一个全局配置组件，可以为 MinAd UI 提供全局的配置选项。
+用于提供全局配置，可设置语言、主题、尺寸等。
 
-## 基本用法
+## 介绍
+
+ConfigProvider 是一个全局配置组件，用于统一管理组件库的语言、主题和尺寸等配置。它采用 Vue 的 Provide/Inject 机制，将配置传递给所有子组件。
+
+## 基础用法
+
+### 设置语言
 
 ```vue
 <template>
-  <md-config-provider :locale="locale" size="small">
-    <md-input />
-    <md-button type="primary">按钮</md-button>
+  <md-config-provider :locale="locale">
+    <!-- 子组件将自动使用设置的语言 -->
+    <md-button>{{ $t('button.confirm') }}</md-button>
   </md-config-provider>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
-import { MdConfigProvider, MdInput, MdButton } from 'minad-ui'
 
-const locale = ref('zh-cn')
+const locale = ref('zh-cn') // 支持 'zh-cn' 和 'en'
+</script>
+```
+
+### 设置主题
+
+```vue
+<template>
+  <md-config-provider :theme="theme">
+    <md-card>
+      <md-button type="primary">Primary Button</md-button>
+    </md-card>
+  </md-config-provider>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const theme = ref('dark') // 支持 'light' 和 'dark'
+</script>
+```
+
+### 设置组件尺寸
+
+```vue
+<template>
+  <md-config-provider :size="size">
+    <md-button>Button</md-button>
+    <md-input placeholder="Input"></md-input>
+  </md-config-provider>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const size = ref('large') // 支持 'small', 'medium', 'large'
 </script>
 ```
 
@@ -25,117 +65,153 @@ const locale = ref('zh-cn')
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| locale | 全局语言设置 | string | 'zh-cn' |
-| size | 全局尺寸设置 | 'small' \| 'medium' \| 'large' | 'medium' |
-| theme | 全局主题设置 | Record<string, any> | {} |
+| --- | --- | --- | --- |
+| locale | 语言设置 | `'zh-cn' \| 'en'` | `'zh-cn'` |
+| theme | 主题设置 | `'light' \| 'dark'` | `'light'` |
+| size | 组件尺寸 | `'small' \| 'medium' \| 'large'` | `'medium'` |
 
-### Events
+### 方法
 
-| 事件名 | 说明 | 参数 |
-|--------|------|------|
-| update:locale | 语言变化时触发 | newLocale: string |
-| update:size | 尺寸变化时触发 | newSize: string |
-| update:theme | 主题变化时触发 | newTheme: Record<string, any> |
+ConfigProvider 组件不直接暴露方法，而是通过 Provide/Inject 机制提供配置。
 
-## 配置项说明
+## 国际化
 
-### locale
+### 支持的语言
 
-配置全局语言，支持的值：
-- 'zh-cn' - 中文
-- 'en' - 英文
+- 中文 (zh-cn)
+- 英文 (en)
 
-### size
-
-配置全局组件尺寸，支持的值：
-- 'small' - 小尺寸
-- 'medium' - 中等尺寸
-- 'large' - 大尺寸
-
-### theme
-
-配置全局主题，可以自定义组件的颜色、字体等样式：
+### 自定义翻译
 
 ```vue
 <template>
-  <md-config-provider :theme="theme">
-    <md-button type="primary">自定义主题按钮</md-button>
+  <md-config-provider :locale="locale">
+    <md-button>{{ $t('custom.button') }}</md-button>
   </md-config-provider>
 </template>
 
-<script setup lang="ts">
-import { MdConfigProvider, MdButton } from 'minad-ui'
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useI18n } from '@/i18n/i18n'
 
-const theme = {
-  primaryColor: '#409eff',
-  successColor: '#67c23a',
-  warningColor: '#e6a23c',
-  dangerColor: '#f56c6c',
-  infoColor: '#909399'
-}
+const locale = ref('zh-cn')
+const { mergeLocaleMessage } = useI18n()
+
+onMounted(() => {
+  // 添加自定义翻译
+  mergeLocaleMessage('zh-cn', {
+    custom: {
+      button: '自定义按钮'
+    }
+  })
+})
 </script>
 ```
 
-## 嵌套使用
+## 主题
 
-ConfigProvider 支持嵌套使用，内层配置会覆盖外层配置：
+### 自定义主题变量
+
+ConfigProvider 组件支持通过 CSS 变量自定义主题。
+
+```scss
+:root {
+  /* 主色调 */
+  --md-primary-color: #1890ff;
+  --md-primary-hover-color: #40a9ff;
+  
+  /* 文字颜色 */
+  --md-text-color: #333333;
+  --md-text-color-secondary: #666666;
+  
+  /* 背景颜色 */
+  --md-background-color: #ffffff;
+  --md-background-color-light: #f5f5f5;
+}
+
+/* 暗黑主题 */
+[data-theme="dark"] {
+  --md-primary-color: #40a9ff;
+  --md-text-color: #ffffff;
+  --md-text-color-secondary: #cccccc;
+  --md-background-color: #1f1f1f;
+  --md-background-color-light: #2f2f2f;
+}
+```
+
+## 使用注意事项
+
+1. ConfigProvider 应该包裹在应用的最外层，以便所有组件都能接收到配置。
+2. 可以嵌套使用 ConfigProvider，内层配置会覆盖外层配置。
+3. 语言设置会影响所有支持国际化的组件，包括表单验证提示、按钮文本等。
+4. 主题设置会影响组件的颜色、背景等样式。
+5. 尺寸设置会影响所有支持尺寸调整的组件。
+
+## 示例代码
+
+### 完整的应用配置
 
 ```vue
 <template>
-  <md-config-provider locale="zh-cn">
+  <md-config-provider
+    :locale="appConfig.locale"
+    :theme="appConfig.theme"
+    :size="appConfig.size"
+  >
+    <app-header />
+    <main>
+      <router-view />
+    </main>
+    <app-footer />
+  </md-config-provider>
+</template>
+
+<script setup>
+import { reactive } from 'vue'
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
+
+const appConfig = reactive({
+  locale: 'zh-cn',
+  theme: 'light',
+  size: 'medium'
+})
+</script>
+```
+
+### 动态切换语言
+
+```vue
+<template>
+  <md-config-provider :locale="currentLocale">
     <div>
-      <md-button type="primary">中文按钮</md-button>
-      <md-config-provider locale="en">
-        <md-button type="primary">English Button</md-button>
-      </md-config-provider>
+      <md-button @click="switchLanguage('zh-cn')">中文</md-button>
+      <md-button @click="switchLanguage('en')">English</md-button>
+      
+      <md-form>
+        <md-form-item label="username">
+          <md-input v-model="username" :placeholder="$t('input.placeholder')"></md-input>
+        </md-form-item>
+        <md-form-item label="password">
+          <md-input v-model="password" type="password" :placeholder="$t('input.password')"></md-input>
+        </md-form-item>
+        <md-form-item>
+          <md-button type="primary" block>{{ $t('button.login') }}</md-button>
+        </md-form-item>
+      </md-form>
     </div>
   </md-config-provider>
 </template>
 
-<script setup lang="ts">
-import { MdConfigProvider, MdButton } from 'minad-ui'
-</script>
-```
-
-## 结合国际化使用
-
-ConfigProvider 与国际化功能紧密结合，可以轻松实现全局语言切换：
-
-```vue
-<template>
-  <div>
-    <md-button @click="switchLocale('zh-cn')">中文</md-button>
-    <md-button @click="switchLocale('en')">English</md-button>
-    
-    <md-config-provider :locale="currentLocale">
-      <md-form>
-        <md-form-item label="用户名">
-          <md-input v-model="username" placeholder="请输入用户名" />
-        </md-form-item>
-        <md-form-item label="密码">
-          <md-input v-model="password" type="password" placeholder="请输入密码" />
-        </md-form-item>
-        <md-button type="primary" @click="submit">提交</md-button>
-      </md-form>
-    </md-config-provider>
-  </div>
-</template>
-
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
-import { MdConfigProvider, MdForm, MdFormItem, MdInput, MdButton } from 'minad-ui'
 
 const currentLocale = ref('zh-cn')
 const username = ref('')
 const password = ref('')
 
-const switchLocale = (locale: string) => {
-  currentLocale.value = locale
-}
-
-const submit = () => {
-  console.log('提交', { username: username.value, password: password.value })
+const switchLanguage = (lang) => {
+  currentLocale.value = lang
 }
 </script>
 ```
