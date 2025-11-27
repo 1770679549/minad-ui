@@ -2,7 +2,7 @@
  * @Author: 李红林 1770679549@qq.com
  * @Date: 2025-11-27 09:00:00
  * @LastEditors: 李红林 1770679549@qq.com
- * @LastEditTime: 2025-11-27 09:29:04
+ * @LastEditTime: 2025-11-27 18:10:19
  * @FilePath: \minad-ui\src\components\md-config-provider\md-config-provider.vue
  * @Description: ConfigProvider 全局配置组件
  *
