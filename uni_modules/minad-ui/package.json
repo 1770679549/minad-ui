@@ -1,0 +1,32 @@
+{
+  "name": "minad-ui",
+  "version": "0.0.1",
+  "description": "一个基于Vue 3的移动端UI组件库",
+  "keywords": [
+    "vue",
+    "ui",
+    "mobile",
+    "components",
+    "uniapp"
+  ],
+  "author": "李红林 <1770679549@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/minad-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/minad-ui/issues"
+  },
+  "homepage": "https://github.com/your-username/minad-ui#readme",
+  "main": "index.js",
+  "uni_modules": {
+    "name": "minad-ui",
+    "description": "一个基于Vue 3的移动端UI组件库",
+    "keywords": ["vue", "ui", "mobile", "components", "uniapp"],
+    "platforms": ["app-plus", "h5", "mp-weixin", "mp-alipay", "mp-baidu", "mp-toutiao", "mp-qq", "mp-360"],
+    "dcloudext": {
+      "category": "ui"
+    }
+  }
+}

@@ -2,7 +2,7 @@
  * @Author: 李红林 1770679549@qq.com
  * @Date: 2025-11-25 15:55:18
  * @LastEditors: 李红林 1770679549@qq.com
- * @LastEditTime: 2025-11-27 18:10:06
+ * @LastEditTime: 2025-11-28 11:49:41
  * @FilePath: \minad-ui\docs\.vitepress\config.ts
  * @Description:
  *
@@ -14,46 +14,69 @@ export default defineConfig({
   description: 'A Vue 3 Mobile UI Component Library',
   base: '/minad-ui/',
   lang: 'zh-CN', // 默认语言
+  themeConfig: {
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          zh: {
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档'
+              },
+              modal: {
+                noResultsText: '无法找到相关结果',
+                resetButtonTitle: '清除查询条件',
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换'
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
   locales: {
-    // 中文配置
+    // 中文配置（默认语言，root）
     root: {
       lang: 'zh-CN',
       title: 'Md UI',
       description: 'Vue 3 移动端 UI 组件库',
       label: '中文',
-      link: '/',
+      link: '/zh/',
       themeConfig: {
         logo: '/logo.svg',
         nav: [
-          { text: '首页', link: '/' },
-          { text: '组件', link: '/components/button' },
-          { text: '指南', link: '/guide/getting-started' },
-          { text: '更新日志', link: '/changelog' },
-          { 
-            text: '语言', 
-            items: [
-              { text: '中文', link: '/' },
-              { text: 'English', link: '/en/' }
-            ]
-          }
+          {
+            text: '指南',
+            link: '/zh/guide/getting-started'
+          },
+          { text: '组件', link: '/zh/components/button' },
+          { text: '更新日志', link: '/zh/changelog' },
+
         ],
         sidebar: {
-          '/components/': {
+          '/zh/components/': {
             items: [
-              { text: 'Button 按钮', link: '/components/button' },
-              { text: 'Icon 图标', link: '/components/icon' },
-              { text: 'Input 输入框', link: '/components/input' },
-              { text: 'Link 链接', link: '/components/link' },
-              { text: 'Row 行', link: '/components/row' },
-              { text: 'Col 列', link: '/components/col' },
-              { text: 'Text 文本', link: '/components/text' }
+              { text: 'Button 按钮', link: '/zh/components/button' },
+              { text: 'Icon 图标', link: '/zh/components/icon' },
+              { text: 'Input 输入框', link: '/zh/components/input' },
+              { text: 'Link 链接', link: '/zh/components/link' },
+              { text: 'Row 行', link: '/zh/components/row' },
+              { text: 'Col 列', link: '/zh/components/col' },
+              { text: 'Text 文本', link: '/zh/components/text' }
             ]
           },
-          '/guide/': {
+          '/zh/guide/': {
             items: [
-              { text: '入门指南', link: '/guide/getting-started' },
-              { text: '安装指南', link: '/guide/installation' },
-              { text: '快速开始', link: '/guide/quick-start' },
+              { text: '入门指南', link: '/zh/guide/getting-started' },
+              { text: '安装指南', link: '/zh/guide/installation' },
+              { text: '快速开始', link: '/zh/guide/quick-start' },
+              { text: '国际化', link: '/zh/guide/i18n' }
             ]
           }
         },
@@ -63,7 +86,7 @@ export default defineConfig({
       }
     },
     // 英文配置
-    '/en/': {
+    en: {
       lang: 'en-US',
       title: 'Md UI',
       description: 'A Vue 3 Mobile UI Component Library',
@@ -72,17 +95,9 @@ export default defineConfig({
       themeConfig: {
         logo: '/logo.svg',
         nav: [
-          { text: 'Home', link: '/en/' },
-          { text: 'Components', link: '/en/components/button' },
           { text: 'Guide', link: '/en/guide/getting-started' },
+          { text: 'Components', link: '/en/components/button' },
           { text: 'Changelog', link: '/en/changelog' },
-          { 
-            text: 'Language', 
-            items: [
-              { text: '中文', link: '/' },
-              { text: 'English', link: '/en/' }
-            ]
-          }
         ],
         sidebar: {
           '/en/components/': {
@@ -111,3 +126,4 @@ export default defineConfig({
     }
   }
 })
+

@@ -1,0 +1,110 @@
+/* 自定义主题样式 */
+
+/* VPDoc 布局调整 - 当同时有侧边栏和右侧边栏时 */
+.VPDoc.has-sidebar.has-aside {
+  display: grid;
+  grid-template-columns: var(--vp-sidebar-width) 1fr var(--vp-aside-width);
+  grid-template-areas: 'sidebar main aside';
+}
+
+/* 主内容区域 */
+.VPDoc.has-sidebar.has-aside .VPContent {
+  grid-area: main;
+}
+
+/* 右侧边栏区域 */
+.VPDoc.has-sidebar.has-aside .VPAside {
+  grid-area: aside;
+}
+
+/* H5演示案例容器 */
+.h5-demo-container {
+  grid-area: aside;
+  position: sticky;
+  top: var(--vp-nav-height);
+  align-self: start;
+  margin: var(--vp-layout-gap) 0;
+}
+
+/* 确保文档内容区域有足够的宽度 */
+@media (min-width: 1280px) {
+  .VPDoc.has-sidebar.has-aside .VPContent {
+    padding-right: var(--vp-layout-gap);
+  }
+}
+
+/* H5演示案例样式 */
+.h5-demo-container {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.h5-demo-container h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+}
+
+.h5-demo-phone {
+  width: 320px;
+  height: 640px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.h5-demo-phone:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.h5-demo-content {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 自定义滚动条 */
+.h5-demo-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.h5-demo-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.h5-demo-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.h5-demo-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 搜索框样式 */
+.VPSearchInput {
+  border-radius: 4px;
+}
+
+/* 调整侧边栏宽度 */
+@media (min-width: 1280px) {
+  .VPNavBar.has-sidebar .content {
+    max-width: calc(100% - 300px);
+  }
+
+  .VPSidebar {
+    width: 300px;
+  }
+}

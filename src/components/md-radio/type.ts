@@ -1,3 +1,12 @@
+/*
+ * @Author: 李红林 1770679549@qq.com
+ * @Date: 2025-11-27 18:00:35
+ * @LastEditors: 李红林 1770679549@qq.com
+ * @LastEditTime: 2025-11-28 09:23:31
+ * @FilePath: \minad-ui\src\components\md-radio\type.ts
+ * @Description:
+ *
+ */
 export interface RadioProps {
   /**
    * 是否选中，支持 v-model
