@@ -1,0 +1,16 @@
+// 组件共享样式
+// 该文件包含所有组件的共享样式和工具类
+@use './variables' as *;
+
+// 尺寸变体工具类
+.md-large {
+  font-size: $md-size-large;
+}
+
+.md-medium {
+  font-size: $md-size-medium;
+}
+
+.md-small {
+  font-size: $md-size-small;
+}

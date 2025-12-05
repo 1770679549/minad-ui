@@ -1,0 +1,8 @@
+// md-ui 样式入口（转发）
+// 说明：
+// - 本文件使用 `@forward` 将子模块（如 variables）导出，方便组件通过单一路径 `@use '../../styles/index' as *;` 引入。
+// - 新增其它样式模块（_mixins.scss、_functions.scss）时，也请在此处添加 `@forward` 语句。
+
+@forward 'variables';
+@forward 'base';
+@forward 'components';
